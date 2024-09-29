@@ -1,7 +1,6 @@
-from collections import defaultdict
-import ujson
+import json
+import os
 import re
-
 
 PinyinToneMark = {
     0: "aoeiuv\u00fc",
@@ -33,7 +32,11 @@ def decode_pinyin(s):
                     if m is None:
                         t += c
                     elif len(m.group(0)) == 1:
-                        t = t[: m.start(0)] + PinyinToneMark[tone][PinyinToneMark[0].index(m.group(0))] + t[m.end(0) :]
+                        t = (
+                            t[: m.start(0)]
+                            + PinyinToneMark[tone][PinyinToneMark[0].index(m.group(0))]
+                            + t[m.end(0) :]
+                        )
                     else:
                         if "a" in t:
                             t = t.replace("a", PinyinToneMark[tone][0])
@@ -53,81 +56,56 @@ def decode_pinyin(s):
     r += t
     return r
 
-def parse_cedict_line(line):
-    if line.startswith("#"):
-        return None
-    parts = line.strip().split(" ")
-    traditional = parts[0]
-    simplified = parts[1]
 
-    # Extracting pronunciation and definitions
-    remaining = " ".join(parts[2:])
-    pronunciation_start = remaining.find("[")
-    pronunciation_end = remaining.find("]")
-    pronunciation = remaining[pronunciation_start + 1 : pronunciation_end]
-    definitions = remaining[pronunciation_end + 2 :].strip("/").replace("/", "; ")
+def process_cedict_file(file_path):
+    entries = {}
 
-    return {
-        "t": traditional,
-        "s": simplified,
-        "p": pronunciation,
-        "d": definitions,
-    }
+    with open(file_path, "r", encoding="utf-8") as file:
+        for line in file:
+            if line.startswith("#"):  # Skip comment lines
+                continue
 
+            parts = line.strip().split(" ", 2)
+            if len(parts) < 3:
+                continue
 
-multiple_mappings = {}
+            trad, simp = parts[0], parts[1]
+            rest = parts[2]
 
-def filter_definitions(definitions):
-    # Filter out definitions starting with "surname"
-    definitions = [d for d in definitions if not d.startswith("surname")]
+            # Extract pronunciations and definitions
+            match = re.match(r"\[(.*?)\] /(.*?)/$", rest)
+            if not match:
+                continue
 
-    # Filter out definitions starting with "abbr."
-    definitions = [d for d in definitions if not d.startswith("abbr.")]
+            pinyin, definitions = match.groups()
+            pinyin = decode_pinyin(pinyin)
+            defs = definitions.split("/")
 
-    # Filter out definitions starting with "variant "
-    definitions = [d for d in definitions if not d.startswith("variant ")]
+            # Add to entries
+            for char in set([trad, simp]):
+                if char not in entries:
+                    entries[char] = []
+                entries[char].append([pinyin, defs])
 
-    # Filter out definitions starting with "old variant "
-    definitions = [d for d in definitions if not d.startswith("old variant ")]
+    # Create JSON files
+    output_dir = os.path.abspath(
+        os.path.join(os.path.dirname(__file__), "..", "dictionary")
+    )
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
 
-    # Filter out definitions longer than 10 words
-    definitions = [d for d in definitions if len(d.split(" ")) <= 10]
-
-    return definitions
-    
-def process_definition(definition):
-    # Remove content within parentheses and square brackets
-    definition = re.sub(r"\([^)]*\)", "", definition)
-    definition = re.sub(r"\[[^]]*\]", "", definition)
-
-    # Remove content after colon
-    definition = re.sub(r":.*", "", definition)
-
-    return definition.strip()
-
-def convert_cedict_to_json(cedict_file_path, output_file_path, trad_to_simp_file_path):
-    cedict_object = defaultdict(lambda: defaultdict(dict))
-    trad_to_simp_mapping = {}
-
-    with open(cedict_file_path, "r", encoding="utf-8") as cedict_file:
-        for line in cedict_file:
-            parsed_line = parse_cedict_line(line.strip())
-            if parsed_line:
-                definitions = parsed_line["d"].split("; ")
-                filtered_definitions = filter_definitions(definitions)
-                if filtered_definitions:
-                    definition = process_definition(filtered_definitions[0])
-                    pinyin = decode_pinyin(parsed_line["p"])
-                    cedict_object[parsed_line["s"]][pinyin] = definition
-                    cedict_object[parsed_line["t"]][pinyin] = definition
-
-
-    with open(output_file_path, "w", encoding="utf-8") as output_file:
-        ujson.dump(cedict_object, output_file, ensure_ascii=False, separators=(",", ": "))
-
-
-    print(multiple_mappings)
+    for char, data in entries.items():
+        filename = os.path.join(output_dir, f"{char}.json")
+        with open(filename, "w", encoding="utf-8") as f:
+            if len(data) == 1:
+                json.dump(data[0], f, ensure_ascii=False, separators=(",", ":"))
+            else:
+                json.dump(
+                    list(zip(*data)), f, ensure_ascii=False, separators=(",", ":")
+                )
 
 
 # Usage
-convert_cedict_to_json("cedict_ts.u8", "cedict.json", "t2s.json")
+script_dir = os.path.dirname(os.path.abspath(__file__))
+cedict_file_path = os.path.join(script_dir, "cedict_ts.u8")
+process_cedict_file(cedict_file_path)

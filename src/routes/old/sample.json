@@ -1,0 +1,822 @@
+[
+    {
+        "id": 780389,
+        "text": "哥倫布不是一位探險家, 因為他熱愛大海。他是一位探險家, 因為他討厭西班牙監獄。",
+        "lang": "cmn",
+        "correctness": 0,
+        "script": "Hant",
+        "license": "CC BY 2.0 FR",
+        "translations": [
+            [
+                {
+                    "id": 547067,
+                    "text": "Christopher Columbus wasn't an explorer because he loved the sea. He was an explorer because he hated Spanish jails.",
+                    "lang": "eng",
+                    "correctness": 0,
+                    "script": null,
+                    "transcriptions": [],
+                    "audios": [],
+                    "isDirect": true,
+                    "lang_name": "English",
+                    "dir": "ltr",
+                    "lang_tag": "en"
+                }
+            ],
+            []
+        ],
+        "transcriptions": [
+            {
+                "id": 2027962,
+                "sentence_id": 780389,
+                "script": "Hans",
+                "text": "哥伦布不是一位探险家, 因为他热爱大海。他是一位探险家, 因为他讨厌西班牙监狱。",
+                "user_id": null,
+                "needsReview": false,
+                "modified": "2020-05-13T15:24:12+00:00",
+                "user": null,
+                "readonly": true,
+                "type": "altscript",
+                "html": "哥伦布不是一位探险家, 因为他热爱大海。他是一位探险家, 因为他讨厌西班牙监狱。",
+                "markup": null,
+                "info_message": "This alternative script was generated automatically."
+            },
+            {
+                "id": 2027963,
+                "sentence_id": 780389,
+                "script": "Latn",
+                "text": "Ge1lun2bu4 bu4 shi4 yi1 wei4 tan4xian3jia1,  yin1wei4 ta1 re4'ai4 da4hai3. ta1 shi4 yi1 wei4 tan4xian3jia1,  yin1wei4 ta1 tao3yan4 Xi1ban1ya2 jian1yu4.",
+                "user_id": null,
+                "needsReview": true,
+                "modified": "2020-05-13T15:24:12+00:00",
+                "user": null,
+                "readonly": false,
+                "type": "transcription",
+                "html": "Gēl&uacute;nb&ugrave; b&ugrave; sh&igrave; yī w&egrave;i t&agrave;nxiǎnjiā,  yīnw&egrave;i tā r&egrave;'&agrave;i d&agrave;hǎi. tā sh&igrave; yī w&egrave;i t&agrave;nxiǎnjiā,  yīnw&egrave;i tā tǎoy&agrave;n Xībāny&aacute; jiāny&ugrave;.",
+                "markup": null,
+                "info_message": "This transcription was generated automatically and has not been reviewed."
+            }
+        ],
+        "audios": [],
+        "user": {
+            "username": "Martha"
+        },
+        "lang_name": "Mandarin Chinese",
+        "dir": "ltr",
+        "lang_tag": "zh-Hant",
+        "is_favorite": null,
+        "is_owned_by_current_user": false,
+        "permissions": null,
+        "max_visible_translations": 5,
+        "current_user_review": null
+    },
+    {
+        "id": 791432,
+        "text": "电梯好像故障了。",
+        "lang": "cmn",
+        "correctness": 0,
+        "script": "Hans",
+        "license": "CC BY 2.0 FR",
+        "translations": [
+            [
+                {
+                    "id": 50620,
+                    "text": "The elevator seems to be out of order.",
+                    "lang": "eng",
+                    "correctness": 0,
+                    "script": null,
+                    "transcriptions": [],
+                    "audios": [
+                        {
+                            "id": 907573,
+                            "author": "CK",
+                            "attribution_url": null,
+                            "license": null
+                        }
+                    ],
+                    "isDirect": true,
+                    "lang_name": "English",
+                    "dir": "ltr",
+                    "lang_tag": "en"
+                }
+            ],
+            [
+                {
+                    "id": 7242682,
+                    "text": "The lift seems to be out of order.",
+                    "lang": "eng",
+                    "correctness": 0,
+                    "script": null,
+                    "transcriptions": [],
+                    "audios": [],
+                    "lang_name": "English",
+                    "dir": "ltr",
+                    "lang_tag": "en"
+                }
+            ]
+        ],
+        "transcriptions": [
+            {
+                "id": 2029860,
+                "sentence_id": 791432,
+                "script": "Hant",
+                "text": "電梯好像故障了。",
+                "user_id": null,
+                "needsReview": false,
+                "modified": "2020-05-13T15:24:46+00:00",
+                "user": null,
+                "readonly": true,
+                "type": "altscript",
+                "html": "電梯好像故障了。",
+                "markup": null,
+                "info_message": "This alternative script was generated automatically."
+            },
+            {
+                "id": 2029861,
+                "sentence_id": 791432,
+                "script": "Latn",
+                "text": "Dian4ti1 hao3xiang4 gu4zhang4 le5.",
+                "user_id": null,
+                "needsReview": true,
+                "modified": "2020-05-13T15:24:46+00:00",
+                "user": null,
+                "readonly": false,
+                "type": "transcription",
+                "html": "Di&agrave;ntī hǎoxi&agrave;ng g&ugrave;zh&agrave;ng le.",
+                "markup": null,
+                "info_message": "This transcription was generated automatically and has not been reviewed."
+            }
+        ],
+        "audios": [],
+        "user": {
+            "username": "fucongcong"
+        },
+        "lang_name": "Mandarin Chinese",
+        "dir": "ltr",
+        "lang_tag": "zh-Hans",
+        "is_favorite": null,
+        "is_owned_by_current_user": false,
+        "permissions": null,
+        "max_visible_translations": 5,
+        "current_user_review": null
+    },
+    {
+        "id": 10325749,
+        "text": "我的夢想是成為一名女消防員。",
+        "lang": "cmn",
+        "correctness": 0,
+        "script": "Hant",
+        "license": "CC BY 2.0 FR",
+        "translations": [
+            [],
+            [
+                {
+                    "id": 251937,
+                    "text": "My dream is to be a firefighter.",
+                    "lang": "eng",
+                    "correctness": 0,
+                    "script": null,
+                    "transcriptions": [],
+                    "audios": [
+                        {
+                            "id": 15076,
+                            "external": null,
+                            "sentence_id": 251937,
+                            "user": {
+                                "username": "CK"
+                            },
+                            "author": "CK",
+                            "attribution_url": null,
+                            "license": null
+                        }
+                    ],
+                    "lang_name": "English",
+                    "dir": "ltr",
+                    "lang_tag": "en"
+                },
+                {
+                    "id": 2628998,
+                    "text": "My dream is to become a firefighter.",
+                    "lang": "eng",
+                    "correctness": 0,
+                    "script": null,
+                    "transcriptions": [],
+                    "audios": [
+                        {
+                            "id": 348562,
+                            "external": null,
+                            "sentence_id": 2628998,
+                            "user": {
+                                "username": "CK"
+                            },
+                            "author": "CK",
+                            "attribution_url": null,
+                            "license": null
+                        }
+                    ],
+                    "lang_name": "English",
+                    "dir": "ltr",
+                    "lang_tag": "en"
+                }
+            ]
+        ],
+        "transcriptions": [
+            {
+                "id": 2157105,
+                "sentence_id": 10325749,
+                "script": "Hans",
+                "text": "我的梦想是成为一名女消防员。",
+                "user_id": null,
+                "needsReview": false,
+                "modified": "2021-09-27T23:29:55+00:00",
+                "user": null,
+                "readonly": true,
+                "type": "altscript",
+                "html": "我的梦想是成为一名女消防员。",
+                "markup": null,
+                "info_message": "This alternative script was generated automatically."
+            },
+            {
+                "id": 2157106,
+                "sentence_id": 10325749,
+                "script": "Latn",
+                "text": "Wo3 de5 meng4xiang3 shi4 cheng2wei2 yi1 ming2 nv3 xiao1fang2yuan2.",
+                "user_id": null,
+                "needsReview": true,
+                "modified": "2021-09-27T23:29:55+00:00",
+                "user": null,
+                "readonly": false,
+                "type": "transcription",
+                "html": "Wǒ de m&egrave;ngxiǎng sh&igrave; ch&eacute;ngw&eacute;i yī m&iacute;ng nǚ xiāof&aacute;ngyu&aacute;n.",
+                "markup": null,
+                "info_message": "This transcription was generated automatically and has not been reviewed."
+            }
+        ],
+        "audios": [],
+        "user": {
+            "username": "DaoSeng"
+        },
+        "lang_name": "Mandarin Chinese",
+        "dir": "ltr",
+        "lang_tag": "zh-Hant",
+        "is_favorite": null,
+        "is_owned_by_current_user": false,
+        "permissions": null,
+        "max_visible_translations": 5,
+        "current_user_review": null
+    },
+    {
+        "id": 5637383,
+        "text": "他有七箇兒子。",
+        "lang": "cmn",
+        "correctness": 0,
+        "script": "Hant",
+        "license": "CC BY 2.0 FR",
+        "translations": [
+            [
+                {
+                    "id": 2698783,
+                    "text": "He has seven sons.",
+                    "lang": "eng",
+                    "correctness": 0,
+                    "script": null,
+                    "transcriptions": [],
+                    "audios": [
+                        {
+                            "id": 162983,
+                            "author": "CK",
+                            "attribution_url": null,
+                            "license": null
+                        }
+                    ],
+                    "isDirect": true,
+                    "lang_name": "English",
+                    "dir": "ltr",
+                    "lang_tag": "en"
+                }
+            ],
+            []
+        ],
+        "transcriptions": [
+            {
+                "id": 2189115,
+                "sentence_id": 5637383,
+                "script": "Hans",
+                "text": "他有七个儿子。",
+                "user_id": null,
+                "needsReview": false,
+                "modified": "2022-11-07T10:56:16+00:00",
+                "user": null,
+                "readonly": true,
+                "type": "altscript",
+                "html": "他有七个儿子。",
+                "markup": null,
+                "info_message": "This alternative script was generated automatically."
+            },
+            {
+                "id": 2189116,
+                "sentence_id": 5637383,
+                "script": "Latn",
+                "text": "Ta1 you3 qi1 ge4 er2zi5.",
+                "user_id": null,
+                "needsReview": true,
+                "modified": "2022-11-07T10:56:16+00:00",
+                "user": null,
+                "readonly": false,
+                "type": "transcription",
+                "html": "Tā yǒu qī g&egrave; &eacute;rzi.",
+                "markup": null,
+                "info_message": "This transcription was generated automatically and has not been reviewed."
+            }
+        ],
+        "audios": [],
+        "user": {
+            "username": "verdastelo9604"
+        },
+        "lang_name": "Mandarin Chinese",
+        "dir": "ltr",
+        "lang_tag": "zh-Hant",
+        "is_favorite": null,
+        "is_owned_by_current_user": false,
+        "permissions": null,
+        "max_visible_translations": 5,
+        "current_user_review": null
+    },
+    {
+        "id": 7755639,
+        "text": "家长指导：如果你的孩子用TATOEBA学语言，请花时间搜索任何你不希望他们读到的词——并且不要害羞！你不会相信他们在这里允许了什么样的未审查的污秽，既然他们认为“语言就是语言”。",
+        "lang": "cmn",
+        "correctness": 0,
+        "script": "Hans",
+        "license": "CC BY 2.0 FR",
+        "translations": [
+            [
+                {
+                    "id": 4576977,
+                    "text": "PARENTAL ADVISORY: If your children use TATOEBA to study languages, please take the time to search any choice words you wouldn't want them to read - and don't be shy! You won't believe some of the uncensored filth they allow on here, since they feel \"language is language.\"",
+                    "lang": "eng",
+                    "correctness": 0,
+                    "script": null,
+                    "transcriptions": [],
+                    "audios": [],
+                    "isDirect": true,
+                    "lang_name": "English",
+                    "dir": "ltr",
+                    "lang_tag": "en"
+                }
+            ],
+            []
+        ],
+        "transcriptions": [
+            {
+                "id": 2106979,
+                "sentence_id": 7755639,
+                "script": "Hant",
+                "text": "家長指導：如果你的孩子用TATOEBA學語言，請花時間搜索任何你不希望他們讀到的詞——並且不要害羞！你不會相信他們在這裡允許了什麼樣的未審查的污穢，既然他們認為“語言就是語言”。",
+                "user_id": null,
+                "needsReview": false,
+                "modified": "2020-05-13T15:49:40+00:00",
+                "user": null,
+                "readonly": true,
+                "type": "altscript",
+                "html": "家長指導：如果你的孩子用TATOEBA學語言，請花時間搜索任何你不希望他們讀到的詞&mdash;&mdash;並且不要害羞！你不會相信他們在這裡允許了什麼樣的未審查的污穢，既然他們認為&ldquo;語言就是語言&rdquo;。",
+                "markup": null,
+                "info_message": "This alternative script was generated automatically."
+            },
+            {
+                "id": 2106980,
+                "sentence_id": 7755639,
+                "script": "Latn",
+                "text": "Jia1zhang3 zhi3dao3: ru2guo3 ni3 de5 hai2zi5 yong4 ta1 T OE bi1 A xue2 yu3yan2, qing3 hua1shi2jian1 sou1suo3 ren4he2 ni3 bu4 xi1wang4 ta1men5 du2 dao4 de5 ci2 —— bing4qie3 bu4 yao4hai4 xiu1! ni3 bu4 hui4 xiang1xin4 ta1men5 zai4 zhe4li3 yun3xu3 le5 shen2me5yang4 de5 wei4 shen3cha2 de5 wu1hui4, ji4ran2 ta1men5 ren4wei2 \"yu3yan2 jiu4shi4 yu3yan2 \".",
+                "user_id": null,
+                "needsReview": true,
+                "modified": "2020-05-13T15:49:40+00:00",
+                "user": null,
+                "readonly": false,
+                "type": "transcription",
+                "html": "Jiāzhǎng zhǐdǎo: r&uacute;guǒ nǐ de h&aacute;izi y&ograve;ng tā T OE bī A xu&eacute; yǔy&aacute;n, qǐng huāsh&iacute;jiān sōusuǒ r&egrave;nh&eacute; nǐ b&ugrave; xīw&agrave;ng tāmen d&uacute; d&agrave;o de c&iacute; &mdash;&mdash; b&igrave;ngqiě b&ugrave; y&agrave;oh&agrave;i xiū! nǐ b&ugrave; hu&igrave; xiāngx&igrave;n tāmen z&agrave;i zh&egrave;lǐ yǔnxǔ le sh&eacute;nmey&agrave;ng de w&egrave;i shěnch&aacute; de wūhu&igrave;, j&igrave;r&aacute;n tāmen r&egrave;nw&eacute;i &quot;yǔy&aacute;n ji&ugrave;sh&igrave; yǔy&aacute;n &quot;.",
+                "markup": null,
+                "info_message": "This transcription was generated automatically and has not been reviewed."
+            }
+        ],
+        "audios": [],
+        "user": {
+            "username": "la_kanro"
+        },
+        "lang_name": "Mandarin Chinese",
+        "dir": "ltr",
+        "lang_tag": "zh-Hans",
+        "is_favorite": null,
+        "is_owned_by_current_user": false,
+        "permissions": null,
+        "max_visible_translations": 5,
+        "current_user_review": null
+    },
+    {
+        "id": 7532562,
+        "text": "我刚打扫过这个。",
+        "lang": "cmn",
+        "correctness": 0,
+        "script": "Hans",
+        "license": "CC BY 2.0 FR",
+        "translations": [
+            [
+                {
+                    "id": 3590847,
+                    "text": "I just cleaned this.",
+                    "lang": "eng",
+                    "correctness": 0,
+                    "script": null,
+                    "transcriptions": [],
+                    "audios": [
+                        {
+                            "id": 218397,
+                            "author": "CK",
+                            "attribution_url": null,
+                            "license": null
+                        }
+                    ],
+                    "isDirect": true,
+                    "lang_name": "English",
+                    "dir": "ltr",
+                    "lang_tag": "en"
+                }
+            ],
+            []
+        ],
+        "transcriptions": [
+            {
+                "id": 2106841,
+                "sentence_id": 7532562,
+                "script": "Hant",
+                "text": "我剛打掃過這個。",
+                "user_id": null,
+                "needsReview": false,
+                "modified": "2020-05-13T15:49:38+00:00",
+                "user": null,
+                "readonly": true,
+                "type": "altscript",
+                "html": "我剛打掃過這個。",
+                "markup": null,
+                "info_message": "This alternative script was generated automatically."
+            },
+            {
+                "id": 2106842,
+                "sentence_id": 7532562,
+                "script": "Latn",
+                "text": "Wo3 gang1 da3sao3 guo5 zhe4ge5.",
+                "user_id": null,
+                "needsReview": true,
+                "modified": "2020-05-13T15:49:38+00:00",
+                "user": null,
+                "readonly": false,
+                "type": "transcription",
+                "html": "Wǒ gāng dǎsǎo guo zh&egrave;ge.",
+                "markup": null,
+                "info_message": "This transcription was generated automatically and has not been reviewed."
+            }
+        ],
+        "audios": [],
+        "user": {
+            "username": "pokeonimac"
+        },
+        "lang_name": "Mandarin Chinese",
+        "dir": "ltr",
+        "lang_tag": "zh-Hans",
+        "is_favorite": null,
+        "is_owned_by_current_user": false,
+        "permissions": null,
+        "max_visible_translations": 5,
+        "current_user_review": null
+    },
+    {
+        "id": 1990169,
+        "text": "请说慢点儿！",
+        "lang": "cmn",
+        "correctness": 0,
+        "script": "Hans",
+        "license": "CC BY 2.0 FR",
+        "translations": [
+            [],
+            [
+                {
+                    "id": 1707,
+                    "text": "Speak more slowly, please!",
+                    "lang": "eng",
+                    "correctness": 0,
+                    "script": null,
+                    "transcriptions": [],
+                    "audios": [],
+                    "lang_name": "English",
+                    "dir": "ltr",
+                    "lang_tag": "en"
+                },
+                {
+                    "id": 3259252,
+                    "text": "Speak more slowly, please.",
+                    "lang": "eng",
+                    "correctness": 0,
+                    "script": null,
+                    "transcriptions": [],
+                    "audios": [
+                        {
+                            "id": 195559,
+                            "external": null,
+                            "sentence_id": 3259252,
+                            "user": {
+                                "username": "CK"
+                            },
+                            "author": "CK",
+                            "attribution_url": null,
+                            "license": null
+                        }
+                    ],
+                    "lang_name": "English",
+                    "dir": "ltr",
+                    "lang_tag": "en"
+                }
+            ]
+        ],
+        "transcriptions": [
+            {
+                "id": 2068898,
+                "sentence_id": 1990169,
+                "script": "Hant",
+                "text": "請說慢點兒！",
+                "user_id": null,
+                "needsReview": false,
+                "modified": "2020-05-13T15:37:18+00:00",
+                "user": null,
+                "readonly": true,
+                "type": "altscript",
+                "html": "請說慢點兒！",
+                "markup": null,
+                "info_message": "This alternative script was generated automatically."
+            },
+            {
+                "id": 2068899,
+                "sentence_id": 1990169,
+                "script": "Latn",
+                "text": "Qing3 shuo1 man4 dian3r5!",
+                "user_id": null,
+                "needsReview": true,
+                "modified": "2020-05-13T15:37:18+00:00",
+                "user": null,
+                "readonly": false,
+                "type": "transcription",
+                "html": "Qǐng shuō m&agrave;n diǎnr!",
+                "markup": null,
+                "info_message": "This transcription was generated automatically and has not been reviewed."
+            }
+        ],
+        "audios": [],
+        "user": {
+            "username": "sunnywqing"
+        },
+        "lang_name": "Mandarin Chinese",
+        "dir": "ltr",
+        "lang_tag": "zh-Hans",
+        "is_favorite": null,
+        "is_owned_by_current_user": false,
+        "permissions": null,
+        "max_visible_translations": 5,
+        "current_user_review": null
+    },
+    {
+        "id": 6330912,
+        "text": "坚持就是胜利。",
+        "lang": "cmn",
+        "correctness": 0,
+        "script": "Hans",
+        "license": "CC BY 2.0 FR",
+        "translations": [
+            [],
+            [
+                {
+                    "id": 243937,
+                    "text": "Stick it out.",
+                    "lang": "eng",
+                    "correctness": 0,
+                    "script": null,
+                    "transcriptions": [],
+                    "audios": [],
+                    "lang_name": "English",
+                    "dir": "ltr",
+                    "lang_tag": "en"
+                }
+            ]
+        ],
+        "transcriptions": [
+            {
+                "id": 2103625,
+                "sentence_id": 6330912,
+                "script": "Hant",
+                "text": "堅持就是勝利。",
+                "user_id": null,
+                "needsReview": false,
+                "modified": "2020-05-13T15:48:38+00:00",
+                "user": null,
+                "readonly": true,
+                "type": "altscript",
+                "html": "堅持就是勝利。",
+                "markup": null,
+                "info_message": "This alternative script was generated automatically."
+            },
+            {
+                "id": 2103626,
+                "sentence_id": 6330912,
+                "script": "Latn",
+                "text": "Jian1chi2 jiu4shi4 sheng4li4.",
+                "user_id": null,
+                "needsReview": true,
+                "modified": "2020-05-13T15:48:38+00:00",
+                "user": null,
+                "readonly": false,
+                "type": "transcription",
+                "html": "Jiānch&iacute; ji&ugrave;sh&igrave; sh&egrave;ngl&igrave;.",
+                "markup": null,
+                "info_message": "This transcription was generated automatically and has not been reviewed."
+            }
+        ],
+        "audios": [],
+        "user": {
+            "username": "yuiyu"
+        },
+        "lang_name": "Mandarin Chinese",
+        "dir": "ltr",
+        "lang_tag": "zh-Hans",
+        "is_favorite": null,
+        "is_owned_by_current_user": false,
+        "permissions": null,
+        "max_visible_translations": 5,
+        "current_user_review": null
+    },
+    {
+        "id": 8215700,
+        "text": "湯姆不會停。",
+        "lang": "cmn",
+        "correctness": 0,
+        "script": "Hant",
+        "license": "CC BY 2.0 FR",
+        "translations": [
+            [
+                {
+                    "id": 2240229,
+                    "text": "Tom won't stop.",
+                    "lang": "eng",
+                    "correctness": 0,
+                    "script": null,
+                    "transcriptions": [],
+                    "audios": [
+                        {
+                            "id": 110923,
+                            "author": "CK",
+                            "attribution_url": null,
+                            "license": null
+                        }
+                    ],
+                    "isDirect": true,
+                    "lang_name": "English",
+                    "dir": "ltr",
+                    "lang_tag": "en"
+                },
+                {
+                    "id": 3409132,
+                    "text": "Tom isn't going to stop.",
+                    "lang": "eng",
+                    "correctness": 0,
+                    "script": null,
+                    "transcriptions": [],
+                    "audios": [
+                        {
+                            "id": 207555,
+                            "author": "CK",
+                            "attribution_url": null,
+                            "license": null
+                        }
+                    ],
+                    "isDirect": true,
+                    "lang_name": "English",
+                    "dir": "ltr",
+                    "lang_tag": "en"
+                }
+            ],
+            []
+        ],
+        "transcriptions": [
+            {
+                "id": 2108986,
+                "sentence_id": 8215700,
+                "script": "Hans",
+                "text": "汤姆不会停。",
+                "user_id": null,
+                "needsReview": false,
+                "modified": "2020-05-13T15:50:20+00:00",
+                "user": null,
+                "readonly": true,
+                "type": "altscript",
+                "html": "汤姆不会停。",
+                "markup": null,
+                "info_message": "This alternative script was generated automatically."
+            },
+            {
+                "id": 1675505,
+                "sentence_id": 8215700,
+                "script": "Latn",
+                "text": "Tang1mu3 bu4hui4 ting2.",
+                "user_id": 81071,
+                "needsReview": false,
+                "modified": "2019-09-29T22:03:43+00:00",
+                "user": {
+                    "username": "Yorwba"
+                },
+                "readonly": false,
+                "type": "transcription",
+                "html": "Tāngmǔ b&ugrave;hu&igrave; t&iacute;ng.",
+                "markup": null,
+                "info_message": "Last edited by Yorwba on September 29, 2019 at 10:03:43 PM UTC"
+            }
+        ],
+        "audios": [],
+        "user": {
+            "username": "verdastelo9604"
+        },
+        "lang_name": "Mandarin Chinese",
+        "dir": "ltr",
+        "lang_tag": "zh-Hant",
+        "is_favorite": null,
+        "is_owned_by_current_user": false,
+        "permissions": null,
+        "max_visible_translations": 5,
+        "current_user_review": null
+    },
+    {
+        "id": 408445,
+        "text": "她一開始讀那封信就哭了起來。",
+        "lang": "cmn",
+        "correctness": 0,
+        "script": "Hant",
+        "license": "CC BY 2.0 FR",
+        "translations": [
+            [
+                {
+                    "id": 266010,
+                    "text": "As soon as she read the letter, she began to cry.",
+                    "lang": "eng",
+                    "correctness": 0,
+                    "script": null,
+                    "transcriptions": [],
+                    "audios": [],
+                    "isDirect": true,
+                    "lang_name": "English",
+                    "dir": "ltr",
+                    "lang_tag": "en"
+                }
+            ],
+            []
+        ],
+        "transcriptions": [
+            {
+                "id": 2007813,
+                "sentence_id": 408445,
+                "script": "Hans",
+                "text": "她一开始读那封信就哭了起来。",
+                "user_id": null,
+                "needsReview": false,
+                "modified": "2020-05-13T15:16:23+00:00",
+                "user": null,
+                "readonly": true,
+                "type": "altscript",
+                "html": "她一开始读那封信就哭了起来。",
+                "markup": null,
+                "info_message": "This alternative script was generated automatically."
+            },
+            {
+                "id": 2007814,
+                "sentence_id": 408445,
+                "script": "Latn",
+                "text": "Ta1 yi1 kai1shi3 du2 na4 feng1 xin4 jiu4 ku1 le5 qi3lai5.",
+                "user_id": null,
+                "needsReview": true,
+                "modified": "2020-05-13T15:16:23+00:00",
+                "user": null,
+                "readonly": false,
+                "type": "transcription",
+                "html": "Tā yī kāishǐ d&uacute; n&agrave; fēng x&igrave;n ji&ugrave; kū le qǐlai.",
+                "markup": null,
+                "info_message": "This transcription was generated automatically and has not been reviewed."
+            }
+        ],
+        "audios": [],
+        "user": {
+            "username": "nickyeow"
+        },
+        "lang_name": "Mandarin Chinese",
+        "dir": "ltr",
+        "lang_tag": "zh-Hant",
+        "is_favorite": null,
+        "is_owned_by_current_user": false,
+        "permissions": null,
+        "max_visible_translations": 5,
+        "current_user_review": null
+    }
+]

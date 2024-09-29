@@ -1,335 +1,245 @@
-// import cedict from 'coupling-dict-chinese-updated';
-import cedict from '$lib/data/cedict.json';
+import type { CedictEntry, TokenizedSentence, TokenizedWord } from '../lib/server-types';
+import { Script, type Result, type TatoebaResponse } from '../lib/tatoeba-types';
+import { getPrimaryDefinition2 } from '$lib/utils/definition-utils';
+import nlp from 'compromise';
+import { adjectives } from './adjectives.server';
+import { adverbs } from './adverbs.server';
+import { nouns } from './nouns.server';
+import { verbs } from './verbs.server';
+import { questionWords } from './question_words.server';
+import { convert } from 'pinyin-pro';
 
-import he from 'he';
-// var decodeEntities = (function () {
-// 	// this prevents any overhead from creating the object each time
-// 	var element = document.createElement("div");
+const makeid = (length: number) => {
+	const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+	return Array.from({ length }, () =>
+		characters.charAt(Math.floor(Math.random() * characters.length))
+	).join('');
+};
 
-// 	function decodeHTMLEntities(str) {
-// 		if (str && typeof str === "string") {
-// 			// strip script/html tags
-// 			str = str.replace(/<script[^>]*>([\S\s]*?)<\/script>/gim, "");
-// 			str = str.replace(/<\/?\w(?:[^"'>]|"[^"]*"|'[^']*')*>/gim, "");
-// 			element.innerHTML = str;
-// 			str = element.textContent;
-// 			element.textContent = "";
-// 		}
+// pinyinResult:
+// {
+// 	"script": "Latn",
+// 	"text": "Ta1 yao4 zuo4 shen2me5?",
+// 	"html": "Tā y&agrave;o zu&ograve; sh&eacute;nme?",
+// }
 
-// 		return str;
-// 	}
-
-// 	return decodeHTMLEntities;
-// })();
-function makeid(length) {
-	let result = '';
-	let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-	let charactersLength = characters.length;
-	for (let i = 0; i < length; i++) {
-		result += characters.charAt(Math.floor(Math.random() * charactersLength));
-	}
-	return result;
+function addSpacesToPinyin(pinyin: string): string {
+	return pinyin.replace(/(\d)/g, '$1 ').trim();
 }
 
-export const load = async ({ fetch }) => {
-	const fetchDefinitions = async (rubyTexts) => {
-		let definitions = [];
+function cleanPinyin(pinyin: string): string {
+	return pinyin.replace(/\s+/g, '').replace(/5/g, '');
+}
 
-		for (const [i, s] of rubyTexts.entries()) {
-			let word = s.chars;
+const lookUpInCedict = async (
+	word: string,
+	numericPinyin: string,
+	fetch: (input: RequestInfo, init?: RequestInit) => Promise<Response>
+): Promise<{ entry: CedictEntry; primaryDefinition: string } | undefined> => {
+	const filename = word.endsWith('.json') ? word : `${word}.json`;
 
-			// Exceptions
-			if (word == '个') {
-				s.definition = 'generic classifier for noun';
-				continue;
-			}
+	try {
+		const response = await fetch(`/dictionary/${filename}`);
 
-			if (word == '别' && i == 0) {
-				s.definition = "don't";
-				continue;
-			}
-
-			if (word == '吗') {
-				s.definition = 'question particle';
-				continue;
-			}
-
-			if (word == '里' && s.pinyin == 'lǐ') {
-				s.definition = 'inside';
-				continue;
-			}
-			if (word == '被') {
-				s.definition = 'by';
-				continue;
-			}
-			if (word == '跟') {
-				s.definition = 'with';
-				continue;
-			}
-
-			// let result = await dictionary.query(s.chars);
-			// let result;
-			console.log(rubyTexts);
-			// let result = await cedict.searchByChineseAsync(s.chars);
-			let result = cedict[s.chars];
-			// console.log('s.chars');
-			// console.log(s.chars);
-			// console.log('result');
-			console.log(result);
-
-			if (!result || result.length == 0) {
-				s.definition = null;
-				// continue;
-				continue;
-			}
-
-			if (s.chars == '背') {
-				console.log(result);
-			}
-
-			// let correctPronunciationResult = result.filter(
-			// 	(r) => r.pronunciation.replace(/\s+/g, '') == (i == 0 ? s.pinyin.toLowerCase() : s.pinyin)
-			// );
-
-			// let correctPronunciationResult = result;
-			// result = correctPronunciationResult.length ? correctPronunciationResult : result;
-			// if (s.chars == '背') {
-			// 	console.log(result);
-			// }
-			// // let englishDefinitions = result[0].definitions.split(';');
-
-			// // let r = result.filter(r => !/^surname/.test(r.definitions))
-			// // console.log(r)
-			// // r = r.length ? r : result;
-
-			// let noSurnameResult = result.filter((r) => !/^surname/.test(r.definitions));
-			// // console.log(noSurnameResult)
-			// result = noSurnameResult.length ? noSurnameResult : result;
-			// // console.log(result)
-
-			// // let r2 = r.filter(r => !/^abbr./.test(r.definitions))
-			// // console.log(r2)
-			// // r = r2.length ? r2 : r;
-
-			// let noAbbreviationResult = result.filter((r) => !/^abbr./.test(r.definitions));
-			// result = noAbbreviationResult.length ? noAbbreviationResult : result;
-			// // console.log(result)
-
-			// // r2 = r.filter(r => !/^variant./.test(r.definitions))
-			// // console.log(r2)
-			// // r = r2.length ? r2 : r;
-
-			// let noVariantResult = result.filter((r) => !/^variant /.test(r.definitions));
-			// result = noVariantResult.length ? noVariantResult : result;
-
-			// let noOldVariantResult = result.filter((r) => !/^old variant /.test(r.definitions));
-			// result = noOldVariantResult.length ? noOldVariantResult : result;
-			// // console.log(result)
-
-			// let definitions = result[0].definitions.split(';');
-
-			// // let noVariantResult = definitions.filter(d => !/^variant /.test(d))
-			// // definitions = noVariantResult.length ? noVariantResult : definitions;
-
-			// let noLongResult = definitions.filter((d) => d.split(' ').length <= 10);
-			// definitions = noLongResult.length ? noLongResult : definitions;
-
-			// let definition = definitions[0];
-			// // let definition = r[0]?.english[0];
-
-			// if (!definition) {
-			// 	s.definition = null;
-			// 	// continue;
-			// }
-
-			// let r2 = definition.replace(/\([^()]*\)/g, '').trim();
-
-			// // "structural particle: used after a verb , linking it to following phrase indicating effect, degree, possibility etc"
-			// // -> "structural particle"
-			// r2 = r2.replace(/:.*/, '');
-
-			// definition = r2.length ? r2 : definition;
-
-			// // console.log(result)
-			// definitions.push(result);
-			// // console.log("definitions")
-			// // console.log(definitions)
-
-			if (s.pinyin in cedict[s.chars]) {
-				s.definition = cedict[s.chars][s.pinyin];
-			}
-			else {
-				s.definition = cedict[s.chars][Object.keys(cedict[s.chars])[0]];
-			}
-			// s.definition = cedict[s.chars][s.pinyin];
+		if (!response.ok) {
+			throw new Error('Network response was not ok');
 		}
 
-		console.log(rubyTexts);
+		const entry: CedictEntry = await response.json();
 
-		return rubyTexts;
+		const primaryDefinition = getPrimaryDefinition2(word, numericPinyin, entry);
+
+		return { entry, primaryDefinition };
+	} catch (err) {
+		console.log(`Failed to fetch ${word}`);
+		return undefined;
+	}
+};
+
+const getPartOfSpeech = (word: string): string => {
+	if (word.startsWith('to ')) {
+		return 'verb';
+	}
+
+	const doc = nlp(word);
+	const tags = doc.out('tags');
+	const partsOfSpeech = ['Noun', 'Verb', 'Adverb', 'Adjective', 'QuestionWord'];
+
+	for (const pos of partsOfSpeech) {
+		if (tags.includes(pos)) {
+			return pos.toLowerCase();
+		}
+	}
+
+	return 'default';
+};
+
+const getOtherAnswers = (partOfSpeech: string): string[] => {
+	const getRandomWord = () => {
+		let wordList: string[];
+		switch (partOfSpeech) {
+			case 'noun':
+				wordList = nouns;
+				break;
+			case 'verb':
+				wordList = verbs;
+				break;
+			case 'adjective':
+				wordList = adjectives;
+				break;
+			case 'adverb':
+				wordList = adverbs;
+				break;
+			case 'questionword':
+				wordList = questionWords;
+				break;
+			default: {
+				const allLists = [nouns, verbs, adjectives, adverbs];
+				wordList = allLists[Math.floor(Math.random() * allLists.length)];
+			}
+		}
+		return wordList[Math.floor(Math.random() * wordList.length)];
 	};
 
-	const seed = makeid(4);
+	const randomWords: string[] = [];
+	while (randomWords.length < 3) {
+		const word = getRandomWord();
+		if (!randomWords.includes(word)) {
+			randomWords.push(word);
+		}
+	}
+
+	return randomWords;
+};
+
+async function tokenizeChinesePinyin(
+	simplifiedSentence: string,
+	traditionalSentence: string,
+	result: Result,
+	fetch: (input: RequestInfo, init?: RequestInit) => Promise<Response>
+): Promise<TokenizedSentence> {
+	const pinyinResult = result.transcriptions.find((t) => t.script === Script.Latn);
+	if (!pinyinResult) {
+		throw new Error('Pinyin transcription not found');
+	}
+
+	// Normalize spaces in the pinyin string
+	const normalizedPinyinText = pinyinResult.text.replace(/\s+/g, ' ').trim();
+
+	const pinyinTokens = normalizedPinyinText.split(/\s+|(?<=\d)(?=[,.:;?!])|(?<=[,.:;?!])(?=\S)/);
+
+	let simplifiedIndex = 0;
+	let traditionalIndex = 0;
+	const tokenizedSimplified: TokenizedWord[] = [];
+	const tokenizedTraditional: TokenizedWord[] = [];
+
+	for (const pinyinToken of pinyinTokens) {
+		if (/^[,.:;?!]$/.test(pinyinToken)) {
+			const punctuation: TokenizedWord = {
+				word: pinyinToken,
+				pinyin: '',
+				numericPinyin: '',
+				definition: undefined
+			};
+			tokenizedSimplified.push(punctuation);
+			tokenizedTraditional.push(punctuation);
+			simplifiedIndex++;
+			traditionalIndex++;
+		} else {
+			const syllableCount = (pinyinToken.match(/\d/g) || []).length;
+
+			const simplifiedChars = simplifiedSentence.slice(
+				simplifiedIndex,
+				simplifiedIndex + syllableCount
+			);
+			const traditionalChars = traditionalSentence.slice(
+				traditionalIndex,
+				traditionalIndex + syllableCount
+			);
+
+			const pinyinWithSpaces = addSpacesToPinyin(pinyinToken);
+			const convertedPinyin = convert(pinyinWithSpaces);
+			const cleanedPinyin = cleanPinyin(convertedPinyin);
+
+			const numericPinyin = addSpacesToPinyin(pinyinToken).replace(/'/g, '').toLowerCase();
+			const simplifiedLookUpResult = await lookUpInCedict(simplifiedChars, numericPinyin, fetch);
+			const traditionalLookUpResult = await lookUpInCedict(traditionalChars, numericPinyin, fetch);
+
+			const partOfSpeech = getPartOfSpeech(simplifiedLookUpResult?.primaryDefinition || '');
+
+			const otherAnswers = getOtherAnswers(partOfSpeech);
+
+			const simplifiedToken: TokenizedWord = {
+				word: simplifiedChars,
+				pinyin: cleanedPinyin,
+				numericPinyin,
+				definition: simplifiedLookUpResult?.entry,
+				primaryDefinition: simplifiedLookUpResult?.primaryDefinition,
+				otherAnswers
+			};
+
+			const traditionalToken: TokenizedWord = {
+				word: traditionalChars,
+				pinyin: cleanedPinyin,
+				numericPinyin,
+				definition: traditionalLookUpResult?.entry,
+				primaryDefinition: traditionalLookUpResult?.primaryDefinition,
+				otherAnswers
+			};
+
+			tokenizedSimplified.push(simplifiedToken);
+			tokenizedTraditional.push(traditionalToken);
+
+			simplifiedIndex += syllableCount;
+			traditionalIndex += syllableCount;
+		}
+	}
+
+	return { simplified: tokenizedSimplified, traditional: tokenizedTraditional };
+}
+
+const getSentences = (result: Result) => {
+	const { text, script, transcriptions } = result;
+	const [transcription] = transcriptions || [];
+
+	let simplifiedSentence = script === Script.Hant ? transcription?.text : text;
+	let traditionalSentence = script === Script.Hans ? transcription?.text : text;
+
+	simplifiedSentence = simplifiedSentence.replace(/\s+/g, '').trim();
+	traditionalSentence = traditionalSentence.replace(/\s+/g, '').trim();
+
+	return [simplifiedSentence, traditionalSentence];
+};
+
+export const load = async ({ fetch }) => {
+	// const seed = makeid(4);
+	// const seed = 'ypYa';
+	// const seed = 'iQYd';
+	const seed = 'D93L';
 	console.log(seed);
-	let response = await fetch(
-		'https://tatoeba.org/en/api_v0/search?from=cmn&orphans=no&sort=random&to=eng&trans_filter=limit&trans_to=eng&unapproved=no&limit=1&rand_seed=' +
-			seed
-		// 'lne2'
-		// 'TcPZ'
-		// 'iVlb'
-		// 'mDb0'
-		// 'yg6k'
-		// 'Uv8f' //long
-		// '7BxZ'
-		// 'lnNV'
-		// 'FMuS'
-		// 'lWWI' // todo yuxia
-		// 'VhCD'
-		// 'WmjG'
-		// 'rFSV'
-		// 'w3pW'
-		// 'osDh'
-		// "Lkrf"
-		// "Cqio"
-		// "Jhjs"
+
+	const response: TatoebaResponse = await fetch(
+		`https://tatoeba.org/en/api_v0/search?from=cmn&orphans=no&sort=random&to=eng&trans_filter=limit&trans_to=eng&unapproved=no&limit=1&rand_seed=${seed}`
 	).then((response) => response.json());
 
-	// console.log(response)
+	const result: Result = response.results[0];
 
-	let result = response.results[0];
+	const [simplifiedSentence, traditionalSentence] = getSentences(result);
 
-	let chineseSentence;
-	let traditionalChineseSentence;
+	const tokenized = await tokenizeChinesePinyin(
+		simplifiedSentence,
+		traditionalSentence,
+		result,
+		fetch
+	);
 
-	if (result.script == 'Hans') {
-		chineseSentence = result.text;
-		traditionalChineseSentence = result.transcriptions[0].text;
-	} else if (result.script == 'Hant') {
-		traditionalChineseSentence = result.text;
-		chineseSentence = result.transcriptions[0].text;
-	} else {
-		chineseSentence = result.transcriptions[0].text;
-		traditionalChineseSentence = result.text;
-	}
-
-	let pinyinResult = result.transcriptions.filter((t) => t.script == 'Latn')[0];
-	// let pinyinSentenceList = he.decode(pinyinResult.html).split(/[, .?";!”“]/);
-	let pinyinSentenceList = he.decode(pinyinResult.html).split(/(?<=[, .?";!”“])|(?=[, .?";!”“])/);
-	pinyinSentenceList = pinyinSentenceList.filter((word) => !/[ ]/.test(word));
-
-	// VhCD
-	// 3-5
-	const noAlphabeticCharsRegex = /^[^a-zA-Z]+$/;
-
-	let tempList = [];
-
-	for (const word of pinyinSentenceList) {
-		if (!word.match(noAlphabeticCharsRegex)) {
-			tempList.push(word);
-		} else {
-			// 3-5
-			for (const letter of word) {
-				tempList.push(letter);
-			}
-		}
-	}
-
-	pinyinSentenceList = tempList;
-
-	let pinyinNumeralSentenceList = pinyinResult.text.split(/(?<=[, .?";!”“])|(?=[, .?";!”“])/);
-
-	// VhCD
-	// 3-5
-	const pinyinWithNumeralsRegex = /\b[a-zA-ZüÜ]+\d/g;
-
-	tempList = [];
-
-	for (const word of pinyinNumeralSentenceList) {
-		if (word.match(pinyinWithNumeralsRegex)) {
-			tempList.push(word);
-		} else {
-			// 3-5
-			for (const letter of word) {
-				tempList.push(letter);
-			}
-		}
-	}
-
-	pinyinNumeralSentenceList = tempList;
-
-	console.log(pinyinNumeralSentenceList);
-
-	// 	const input = "Hao3 le5 hai2zi5men5!";
-	// const matches = input.match(pinyinWithNumeralsRegex);
-
-	// console.log(matches);
-
-	pinyinNumeralSentenceList = pinyinNumeralSentenceList.filter((word) => !/[ ]/.test(word));
-	console.log(pinyinNumeralSentenceList);
-
-	let translation = result.translations.filter((a) => a.length > 0)[0][0].text;
-
-	let syllableArray = [];
-	for (let n of pinyinNumeralSentenceList) {
-		let syllableCount = n.match(/\d/g)?.length ?? (n.length || 1);
-		syllableArray.push(syllableCount);
-	}
-
-	let rubyTexts = [];
-	let accChinese = 0;
-	for (let [i, n] of syllableArray.entries()) {
-		rubyTexts = [
-			...rubyTexts,
-			{
-				chars: chineseSentence.slice(accChinese, accChinese + n),
-				traditionalChars: traditionalChineseSentence.slice(accChinese, accChinese + n),
-				pinyin: /^[,.\?"“”!]+$/.test(pinyinSentenceList[i]) ? '' : pinyinSentenceList[i]
-				// definition: await dictionary.query(chineseSentence.slice(accChinese, accChinese + n))[0]
-			}
-		];
-
-		accChinese += n;
-	}
-
-	for (const [i, s] of rubyTexts.entries()) {
-		let word = s.chars;
-
-		// Exceptions
-		if (word == '个') {
-			s.definition = 'generic classifier for noun';
-			continue;
-		}
-
-		if (word == '别' && i == 0) {
-			s.definition = "don't";
-			continue;
-		}
-
-		if (word == '吗') {
-			s.definition = 'question particle';
-			continue;
-		}
-
-		if (word == '里' && s.pinyin == 'lǐ') {
-			s.definition = 'inside';
-			continue;
-		}
-		if (word == '被') {
-			s.definition = 'by';
-			continue;
-		}
-	}
+	const translation = result.translations.filter((a) => a.length > 0)[0][0].text;
 
 	return {
-		seed,
+		simplifiedSentence,
+		traditionalSentence,
 		response,
-		chineseSentence,
-		traditionalChineseSentence,
-		translation,
-		// pinyinTextList: pinyinSentence.split(/[, .?";!”“]/),
-		rubyTexts,
-		streamed: {
-			definitions: fetchDefinitions(rubyTexts)
-		}
+		tokenized,
+		translation
 	};
 };
